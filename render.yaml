@@ -2,7 +2,7 @@ services:
   - type: web
     name: dat085-api  # Tên service trên Render
     env: python
-    repo: https://github.com/your-username/dat085-api  # Thay bằng repo của bạn
+    repo: https://github.com/jjoevv/coffee-shop.git  # Thay bằng repo của bạn
     branch: main
     plan: free  # Sử dụng plan miễn phí, có thể đổi thành "starter", "pro"
     buildCommand: "pip install -r requirements.txt"
