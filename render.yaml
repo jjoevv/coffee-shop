@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: dat085-api  # Tên service trên Render
+    name: coffee-shop-api  # Tên service trên Render
     env: python
     repo: https://github.com/jjoevv/coffee-shop.git  # Thay bằng repo của bạn
     branch: main
