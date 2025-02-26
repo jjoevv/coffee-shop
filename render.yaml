@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: coffee-shop-api
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: MONGO_URI
+        value: mongodb+srv://username:password@cluster.mongodb.net/coffee_shop_sales
+      - key: PORT
+        value: 10000
