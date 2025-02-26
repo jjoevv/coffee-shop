@@ -1,11 +1,16 @@
 services:
   - type: web
-    name: coffee-shop-api
-    runtime: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn app:app
+    name: dat085-api  # Tên service trên Render
+    env: python
+    repo: https://github.com/your-username/dat085-api  # Thay bằng repo của bạn
+    branch: main
+    plan: free  # Sử dụng plan miễn phí, có thể đổi thành "starter", "pro"
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn app:app"  # Nếu dùng Flask, thay bằng lệnh start tương ứng
     envVars:
       - key: MONGO_URI
-        value: mongodb+srv://username:password@cluster.mongodb.net/coffee_shop_sales
+        sync: false  # Nếu bạn đã đặt biến này trên Render UI
+      - key: SECRET_KEY
+        sync: false
       - key: PORT
         value: 10000
