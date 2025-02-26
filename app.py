@@ -9,7 +9,7 @@ MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017")  # Mặc định
 client = MongoClient(MONGO_URI)
 db = client["coffee_shop_sales"]
 
-app.route('/data/<collection_name>', methods=['GET'])
+@app.route('/data/<collection_name>', methods=['GET'])
 def get_collection_data(collection_name):
     collection = db[collection_name]
     data = list(collection.find({}, {"_id": 0}))  # Bỏ `_id` để tránh lỗi trong PowerApps
