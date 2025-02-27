@@ -22,7 +22,7 @@ db = client["coffee_shop_sales"]
 async def check_connection():
     try:
         await client.admin.command("ping")
-        print("✅ Connect successfully!")
+        print("✅ Connect successfully!!")
     except Exception as e:
         print(f"❌ Connect failed: {e}")
 
