@@ -1,20 +1,10 @@
-import os
-from flask import Flask, jsonify
-from pymongo import MongoClient
+from fastapi import FastAPI
+from db import db  # Import database từ db.py
 
-app = Flask(__name__)
+app = FastAPI()
 
-# Lấy biến môi trường
-MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017")  # Mặc định là localhost nếu không có biến môi trường
-client = MongoClient(MONGO_URI)
-db = client["coffee_shop_sales"]
-
-@app.route('/data/<collection_name>', methods=['GET'])
-def get_collection_data(collection_name):
+@app.get("/data/{collection_name}")
+async def get_collection_data(collection_name: str):
     collection = db[collection_name]
-    data = list(collection.find({}, {"_id": 0}))  # Bỏ `_id` để tránh lỗi trong PowerApps
-    return jsonify(data)
-
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=int(os.getenv("PORT", 5000)))
+    data = await collection.find({}, {"_id": 0}).to_list(length=100)
+    return data
